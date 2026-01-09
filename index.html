@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Server offline</title>
+  <style>
+    body {
+      background: #0f172a;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    img {
+      max-width: 600px;
+      width: 90%;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+    .status {
+      font-size: 28px;
+      margin-top: 20px;
+    }
+    .sub {
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="status">🔌 Server je momentálně offline</h1>
+  <p class="sub">Snažíme se ho znovu zapojit…</p>
+
+  <img src="offline.png" alt="Server offline">
+
+  <p class="sub">Zkus to prosím za chvíli znovu.</p>
+
+  <script>
+    const SERVER_URL = "http://TVŮJ_IP:8080/status";
+
+    setInterval(() => {
+      fetch(SERVER_URL, { mode: "no-cors" })
+        .then(() => {
+          window.location.href = "http://TVŮJ_IP:8080/";
+        })
+        .catch(() => {});
+    }, 5000);
+  </script>
+
+</body>
+</html>
